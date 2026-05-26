@@ -24,11 +24,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mlflow
-          pip install -r requirements.txt
+          pip install pandas
+          pip install scikit-learn
+          pip install matplotlib
 
       - name: Run mlflow project
         run: mlflow run . --env-manager local
 
       - name: Get latest MLflow run_id
-        run: |
-          echo "MLflow project executed successfully"
+        run: echo "MLflow project executed successfully"
