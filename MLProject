@@ -1,4 +1,4 @@
-name: retail-project
+name: RetailPrediction
 
 conda_env: conda.yaml
 
