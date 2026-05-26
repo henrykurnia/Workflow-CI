@@ -6,25 +6,29 @@ on:
       - main
 
 jobs:
-  train-model:
-
+  train:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Run actions/checkout@v3
+        uses: actions/checkout@v3
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.13
+          python-version: "3.12"
 
-      - name: Install Dependencies
-        run: |
-          pip install mlflow pandas scikit-learn matplotlib
+      - name: Check Env
+        run: python --version
 
-      - name: Run MLflow Project
+      - name: Install dependencies
         run: |
-          cd MLProjectF
-          mlflow run . --env-manager local
+          pip install mlflow
+          pip install -r requirements.txt
+
+      - name: Run mlflow project
+        run: mlflow run . --env-manager local
+
+      - name: Get latest MLflow run_id
+        run: |
+          echo "MLflow project executed successfully"
